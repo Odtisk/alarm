@@ -13,7 +13,8 @@ public class SecurityZone : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        _alarm.TurnOn();
+        if (collision.gameObject == _violator)
+            _alarm.TurnOn();
     }
 
     private void OnTriggerExit2D(Collider2D collision)
