@@ -24,18 +24,15 @@ public class Alarm : MonoBehaviour
         _spriteRenderer = GetComponent<SpriteRenderer>();
         _audio = GetComponent<AudioSource>();
         _timeStep = new WaitForSeconds(_duration / _percentage);
+        StartCoroutine(Escalate());
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    public void TurnOn()
     {
-        if (collision.TryGetComponent<Player>(out var _))
-        {
-            StartCoroutine(Escalate());
-            _hasViolator = true;
-        }
+        _hasViolator = true;
     }
 
-    private void OnTriggerExit2D(Collider2D collision)
+    public void TurnOff()
     {
         _hasViolator = false;
     }
